@@ -8,4 +8,5 @@ router.register(r'posts', PostViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('chatgpt/<prompt>', chatgptFunc, name='chatgpt'),
+    #path('chat/<prompt>', chatFunc, name='chat'),
 ]

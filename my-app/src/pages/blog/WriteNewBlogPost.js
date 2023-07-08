@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "@/components/Layout";
 
 export default function WriteNewBlogPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [chatgptResponse, setChatgptResponse] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,26 +27,31 @@ export default function WriteNewBlogPost() {
     }
   };
 
-  const chatgptSubmit = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/posts/",
-        formData
-      );
-      console.log(response.data);
-      setTitle("");
-      setContent("");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
+  const chatgptSubmit = async (title) => {
+    console.log(title);
+    await axios
+      .get(
+        `http://127.0.0.1:8000/api/chatgpt/${title}` +
+          "¥n ブログ記事で使ういい感じのタイトルだけを返してください"
+      )
+      .then((res) => {
+        console.log(res.data);
+        setChatgptResponse(res.data);
+      });
   };
+
+  
+  useEffect(() => {
+    console.log("これはchatgptResponseです",chatgptResponse);
+    setTitle(chatgptResponse);
+  }, [chatgptResponse]);
 
   return (
     <Layout title="Blog page">
       <div className="w-full grid grid-cols-3 gap-4">
         <div>
           <h1 className="text-white mt-8 flex flex-col items-center text-xl">Let's ChatGPT</h1>
-          <button className="border-2 border-gray-500 text-white" onClick={chatgptSubmit}>ChatGPT</button>
+          <button className="border-2 border-gray-500 text-white" onClick={()=>{chatgptSubmit(title)}}>ChatGPT</button>
         </div>
         <div>
           <h1 className="text-white mb-8 flex flex-col items-center text-4xl">Create a new post</h1>
