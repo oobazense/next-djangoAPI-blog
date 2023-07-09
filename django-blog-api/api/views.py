@@ -3,6 +3,13 @@ from .models import Post
 from .serializers import PostSerializer
 from django.http import HttpResponse
 
+from dotenv import load_dotenv
+import os
+
+# .env ファイルを読み込む
+load_dotenv()
+api_key = os.getenv('openai_API_KEY')
+
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -10,8 +17,7 @@ class PostViewSet(viewsets.ModelViewSet):
 def chatgptFunc(request,prompt):
     import os
     import openai
-    openai.api_key = "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"
-    #"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"
+    openai.api_key = api_key
 
     def chatMsg(prompt):
         completion = openai.ChatCompletion.create(
