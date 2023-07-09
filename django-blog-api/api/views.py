@@ -10,7 +10,7 @@ class PostViewSet(viewsets.ModelViewSet):
 def chatgptFunc(request,prompt):
     import os
     import openai
-    openai.api_key = "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"
+    openai.api_key = "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"
     #"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"
 
     def chatMsg(prompt):
