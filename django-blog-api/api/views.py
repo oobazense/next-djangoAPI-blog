@@ -21,7 +21,7 @@ def chatgptFunc(request,prompt):
 
     def chatMsg(prompt):
         completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo-16k",
             messages=[
             #{"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt}
