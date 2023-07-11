@@ -27,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/blog.js"
     ],
-    "/blog/WriteNewBlogPost": [
+    "/blog/change/[rewriteid]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/blog/WriteNewBlogPost.js"
-    ],
-    "/blog/[detail]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/blog/[detail].js"
+      "static/chunks/pages/blog/change/[rewriteid].js"
     ]
   },
   "ampFirstPages": []
