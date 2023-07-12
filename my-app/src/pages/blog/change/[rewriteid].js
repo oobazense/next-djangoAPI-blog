@@ -33,24 +33,28 @@ export default function ReWrite({ article }) {
     return <div>Loading...</div>;
   }
 
-
   return (
     <>
       <Layout title="Blog page">
-        <div className="flex flex-col items-center text-3xl p-8">
+        <div className="flex flex-col items-center text-3xl p-8 w-screen">
           ID = {article.id}
-          <form onSubmit={handleSubmit}>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <form onSubmit={handleSubmit} className="w-full max-w-8xl">
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-2 my-2"
+            />
 
-            <div className="text-white text-xl p-8">
-              <textarea
-                value={article.content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            </div>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className="w-full p-2 my-2"
+              rows="100"
+            />
+
             <button
               type="submit"
-              className="border-2 border-gray-500 text-white rounded-full"
+              className="border-2 border-gray-500 text-white rounded-full mt-4"
             >
               Submit
             </button>
